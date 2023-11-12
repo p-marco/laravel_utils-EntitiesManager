@@ -1,5 +1,6 @@
 <?php 
 
+namespace pmarco\EntitiesManager;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Config;
