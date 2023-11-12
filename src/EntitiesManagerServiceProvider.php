@@ -12,4 +12,13 @@ class EntitiesManagerServiceProvider extends ServiceProvider
             return Config::get('entities_manager');
         });
     }
+    public function boot()
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                \pmarco\EntitiesManager\Commands\EntityGenerateCommand::class,
+            ]);
+        }
+
+    }
 }
