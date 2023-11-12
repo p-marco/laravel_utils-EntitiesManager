@@ -4,7 +4,7 @@ namespace pmarco\EntitiesManager\Helpers;
 
 use Illuminate\Support\Str;
 
-class EntityStringManipulator
+class EntityStrManipulator
 {
     protected function formatPluralStr($string)
     {
