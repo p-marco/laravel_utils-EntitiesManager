@@ -4,30 +4,30 @@ namespace pmarco\EntitiesManager\Base;
 
 class EntityBase
 {
-    protected $entityName = "";
+    // protected $entityName = "";
 
-    protected $entityController = "";
-    protected $entityModel= "";
-    protected $entityProvider = "";
-    protected $entityRepository = "";
-    protected $entityComponents = [];
+    // protected $entityController = "";
+    // protected $entityModel= "";
+    // protected $entityProvider = "";
+    // protected $entityRepository = "";
+    // protected $entityComponents = [];
 
-    protected $entityBaseFolder = "";
+    // protected $entityBaseFolder = "";
 
-    public function __construct($entityName)
-    {
-        $this->entityName = $entityName;
-    }
+    // public function __construct($entityName)
+    // {
+    //     $this->entityName = $entityName;
+    // }
 
-    public function setName($entityName)
-    {
-        $this->entityName = $entityName;
-    }
+    // public function setName($entityName)
+    // {
+    //     $this->entityName = $entityName;
+    // }
 
-    public function getName()
-    {
-        return $this->entityName;
-    }
+    // public function getName()
+    // {
+    //     return $this->entityName;
+    // }
 
 
 
