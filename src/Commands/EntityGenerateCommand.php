@@ -41,8 +41,8 @@ class EntityGenerateCommand extends Command
 
     public function setEntityComponentProperties($entityComponent)
     {
-        $this->entityComponentClass = $this->$entityStrManipulator->formatSingularAndUppercaseStr($entityComponent);
-        $this->entityComponentDir = $this->$entityStrManipulator->formatPluralAndUppercaseStr($entityComponent);
+        $this->entityComponentClass = $this->entityStrManipulator->formatSingularAndUppercaseStr($entityComponent);
+        $this->entityComponentDir = $this->entityStrManipulator->formatPluralAndUppercaseStr($entityComponent);
     }
 
     protected function setCommandSignature($entityComponent)
