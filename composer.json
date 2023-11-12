@@ -1,0 +1,22 @@
+{
+    "name": "p-marco/laravel_utils.entitiesmanager",
+    "description": "Opinionated package for laravel that organizes the entities by responsabilities.",
+    "type": "laravel-package",
+    "require": {
+      "php": ">=8.1",
+      "laravel/framework": "^10.0"
+    },
+    "autoload": {
+      "psr-4": {
+        "p-marco\\LaravelUtils\\EntitiesManager\\": "src/"
+      }
+    },
+    "extra": {
+      "laravel": {
+        "providers": [
+          "p-marco\\LaravelUtils\\EntitiesManager\\EntitiesManagerServiceProvider"
+        ]
+      }
+    }
+  }
+  
