@@ -4,15 +4,15 @@ namespace pmarco\EntitiesManager\Base;
 
 class EntityBase
 {
-    protected $entityName;
+    protected $entityName = "";
 
-    protected $entityController;
-    protected $entityModel;
-    protected $entityProvider;
-    protected $entityRepository;
+    protected $entityController = "";
+    protected $entityModel= "";
+    protected $entityProvider = "";
+    protected $entityRepository = "";
     protected $entityComponents = [];
 
-    protected $entityBaseFolder;
+    protected $entityBaseFolder = "";
 
     public function __construct($entityName)
     {
