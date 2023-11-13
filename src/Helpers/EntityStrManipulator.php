@@ -6,27 +6,27 @@ use Illuminate\Support\Str;
 
 class EntityStrManipulator
 {
-    protected function formatPluralStr($string)
+    public function formatPluralStr($string)
     {
         return Str::plural($string);
     }
     
-    protected function formatSingularStr($string)
+    public function formatSingularStr($string)
     {
         return Str::singular($string);
     }
 
-    protected function formatUppercaseStr($string)
+    public function formatUppercaseStr($string)
     {
         return Str::ucfirst($string);
     }
 
-    protected function formatPluralAndUppercaseStr($string)
+    public function formatPluralAndUppercaseStr($string)
     {
         return $this->formatUppercaseStr($this->formatPluralStr($string));
     }
 
-    protected function formatSingularAndUppercaseStr($string)
+    public function formatSingularAndUppercaseStr($string)
     {
         return $this->formatUppercaseStr($this->formatSingularStr($string));
     }
