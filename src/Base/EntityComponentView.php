@@ -5,7 +5,7 @@ use pmarco\EntitiesManager\Helpers\EntityStrManipulator;
 use pmarco\EntitiesManager\Base\EntityComponent; 
 
 
-class EntityComponentController extends EntityComponent
+class EntityComponentView extends EntityComponent
 {
     public $name = "view";
 
