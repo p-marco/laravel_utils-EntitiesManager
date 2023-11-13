@@ -10,19 +10,20 @@ use pmarco\EntitiesManager\Base\EntityComponentProvider;
 
 class EntityComponentFactory
 {
-    public static function create(string $componentType): EntityComponent
+    public static function create(string $componentType, Entity $entity, EntityPathManager $managePath, EntityStrManipulator $manipulateStr): EntityComponent
     {
+        
         switch ($componentType) {
             case 'model':
-                return new EntityComponentModel();
+                return new EntityComponentModel($entity, $managePath, $manipulateStr);            
             case 'view':
-                return new EntityComponentView();
+                return new EntityComponentView($entity, $managePath, $manipulateStr);
             case 'controller':
-                return new EntityComponentController();
+                return new EntityComponentController($entity, $managePath, $manipulateStr);
             case 'repository':
-                return new EntityComponentRepository();
+                return new EntityComponentRepository($entity, $managePath, $manipulateStr);
             case 'provider':
-                return new EntityComponentProvider();
+                return new EntityComponentProvider($entity, $managePath, $manipulateStr);
             default:
                 throw new \InvalidArgumentException("Invalid component type: $componentType");
         }

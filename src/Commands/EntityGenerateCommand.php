@@ -33,13 +33,18 @@ class EntityGenerateCommand extends Command
         $entityName = $this->argument('entity');
         $types = $this->option('component');
 
+        $entity = new Entity(); 
+        $managePath = new EntityPathManager(); 
+        $manipulateStr = new EntityStrManipulator(); 
+
+
         $validTypes = ['model', 'controller', 'view']; 
 
         $typesToGenerate = $types ? explode(',', $types) : $validTypes;
 
         foreach ($typesToGenerate as $type) {
             if (in_array($type, $validTypes)) {
-                $component = EntityComponentFactory::create($type);
+                $component = EntityComponentFactory::create($type, $entity, $managePath, $manipulateStr);                
                 $component->generate($type);
             } else {
                 $this->error("Invalid type: $type");
