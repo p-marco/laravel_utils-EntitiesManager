@@ -16,7 +16,7 @@ class EntityGenerateCommand extends Command
 
     protected $signature = 'entity:generate 
                             {entityName : The name of the Entity you want to create} 
-                            {--entityComponent? : The type of component you want to create (Model, View, Controller, Repository etc.)}';
+                            {--entityComponent : The type of component you want to create (Model, View, Controller, Repository etc.)}';
     
 
     public function __construct(EntityPathManager $entityPathManager, EntityBase $entity, EntityStrManipulator $entityStrManipulator)
