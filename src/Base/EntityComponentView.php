@@ -7,7 +7,7 @@ use pmarco\EntitiesManager\Base\EntityComponent;
 
 class EntityComponentView extends EntityComponent
 {
-    public $name = "view";
+    public string $name = "view";
 
     public function generateComponent()
     {

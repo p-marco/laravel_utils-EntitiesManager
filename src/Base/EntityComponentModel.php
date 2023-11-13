@@ -7,5 +7,5 @@ use pmarco\EntitiesManager\Base\EntityComponent;
 
 class EntityComponentModel extends EntityComponent
 {
-    public $name = "model";
+    public string $name = "model";
 }

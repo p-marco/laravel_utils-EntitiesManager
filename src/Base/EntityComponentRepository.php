@@ -7,7 +7,7 @@ use pmarco\EntitiesManager\Base\EntityComponent;
 
 class EntityComponentRepository extends EntityComponent
 {
-    public $name = "repository";
+    public string $name = "repository";
 
     public function generateComponent()
     {

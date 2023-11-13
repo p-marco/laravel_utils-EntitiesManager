@@ -7,5 +7,5 @@ use pmarco\EntitiesManager\Base\EntityComponent;
 
 class EntityComponentProvider extends EntityComponent
 {
-    public $name = "provider";
+    public string $name = "provider";
 }
