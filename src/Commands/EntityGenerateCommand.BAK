@@ -1,0 +1,101 @@
+<?php 
+
+namespace pmarco\EntitiesManager\Commands;
+
+
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Config;
+
+use pmarco\EntitiesManager\Base\EntityBase; 
+
+use pmarco\EntitiesManager\Helpers\EntityPathManager; 
+use pmarco\EntitiesManager\Helpers\EntityStrManipulator; 
+
+class EntityGenerateCommand extends Command
+{
+
+    protected $signature = 'entity:generate 
+                            {entity : The name of the Entity you want to create} 
+                            {--component : The type of component you want to create (Model, View, Controller, Repository etc.)}';
+    
+
+    public function __construct(EntityPathManager $entityPathManager, EntityBase $entity, EntityStrManipulator $entityStrManipulator)
+    {
+        parent::__construct();
+        $this->entityBase = $entity;
+        $this->entityPathManager = $entityPathManager;
+        $this->entityStrManipulator = $entityStrManipulator;
+    }
+
+    public function handle()
+    {
+        $entity = $this->argument('entity');
+        $types = $this->option('component');
+    
+        $validTypes = ['model', 'controller', 'view'];
+    
+        if ($types) {
+            $typesArray = explode(',', $types);
+    
+            $typesArray = array_filter($typesArray, function ($type) use ($validTypes) {
+                return in_array($type, $validTypes);
+            });
+    
+            if (empty($typesArray)) {
+                $this->error("Invalid types: $types");
+                return;
+            }
+    
+            foreach ($typesArray as $type) {
+                $this->generateEntityComponent($type);
+            }
+        } else {
+            foreach ($validTypes as $type) {
+                $this->generateEntityComponent($type);
+            }
+        }
+    
+        $this->info("Entity components generated for: $entity");
+    
+    
+
+        //$this->setCommandSignature($entityComponent);
+        //$this->setCommandDescription();
+        $this->setEntityComponentProperties($entityComponent);
+
+        $this->entityPathManager->managePath($entityName, $entityComponent);
+
+        $this->info("Generating entity: $entityName");
+    }
+
+    public function setEntityComponentProperties($entityComponent)
+    {
+        $this->entityComponentClass = $this->entityStrManipulator->formatSingularAndUppercaseStr($entityComponent);
+        $this->entityComponentDir = $this->entityStrManipulator->formatPluralAndUppercaseStr($entityComponent);
+    }
+
+    protected function setCommandSignature($entityComponent)
+    {
+        $configuredCommandSignature = config('entities_manager.command_generate-signature');
+        if (!empty($entityComponent)) {
+            $this->signature = "$configuredCommandSignature:$entityComponent {entityName}";
+        } else {
+            $this->signature = "$configuredCommandSignature {entityName}";
+        }
+    }
+
+    protected function setCommandDescription()
+    {
+        $this->description = config('entities_manager.command_generate-description');
+    }
+
+    protected function generateEntityComponent($entityComponent, $entityComponentNamespace)
+    {
+        $this->call("make:$entityComponent", [
+            'name' => $entityComponentNamespace
+        ]);
+    }
+
+
+
+}

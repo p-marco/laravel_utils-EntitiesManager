@@ -51,7 +51,7 @@ Add the package in `composer.json`:
         }
     ],
     "require": {
-        "p-marco/laravel_utils.entitiesManager": "main"
+        "p-marco/laravel_utils.entitiesManager": "dev-main"
     }
 ```
 
@@ -59,12 +59,12 @@ Add the package in `composer.json`:
 
 ```
 // Basic usage:
-artisan entity:generate:{entityType} {entityName}
+artisan entity:generate {entity} {--type}
 
 // Create a model or other types (either if the Entity is already present or not):
-artisan entity:generate:model Author
-artisan entity:generate:view Comment
-artisan entity:generate:controller Post
+artisan entity:generate Author --type=model
+artisan entity:generate Comment --type=view
+artisan entity:generate Post --type=controller
 
 // Create a full entity with all the items
 artisan entity:generate Post
