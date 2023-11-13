@@ -14,7 +14,9 @@ use pmarco\EntitiesManager\Helpers\EntityStrManipulator;
 class EntityGenerateCommand extends Command
 {
 
-    protected $signature = 'entity:generate {entityName} {entityComponent?}';
+    protected $signature = 'entity:generate 
+                            {entityName : The name of the Entity you want to create} 
+                            {--entityComponent? : The type of component you want to create (Model, View, Controller, Repository etc.)}';
     
 
     public function __construct(EntityPathManager $entityPathManager, EntityBase $entity, EntityStrManipulator $entityStrManipulator)
@@ -28,7 +30,7 @@ class EntityGenerateCommand extends Command
     public function handle()
     {
         $entityName = $this->argument('entityName');
-        $entityComponent = $this->argument('entityComponent');
+        $entityComponent = $this->option('entityComponent');
 
         //$this->setCommandSignature($entityComponent);
         //$this->setCommandDescription();
