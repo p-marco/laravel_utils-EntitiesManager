@@ -21,8 +21,8 @@ class EntityGenerateCommand extends Command
     {
         parent::__construct();
         $this->entityBase = $entity;
-        $this->EntityPathManager = $entityPathManager;
-        $this->EntityStrManipulator = $entityStrManipulator;
+        $this->entityPathManager = $entityPathManager;
+        $this->entityStrManipulator = $entityStrManipulator;
     }
 
     public function handle()
