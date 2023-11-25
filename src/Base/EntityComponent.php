@@ -33,11 +33,16 @@ abstract class EntityComponent
         $fullPath = $this->getEntityTreeDir->entityComponentDir;
     }
 
-    public function generateComponent($entityName, string $fullPath) : void
+    public function generateComponentBAK($entityName, string $fullPath) : void
     {
         $this->call("make:$component", [
             'name' => $fullPath
         ]);
+    }
+
+    public function generateComponent($entityName, string $fullPath)
+    {
+        $this->echo("Hello");
     }
 
     public function generate(string $entityName): void

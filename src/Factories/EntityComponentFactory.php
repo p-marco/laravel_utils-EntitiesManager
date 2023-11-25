@@ -1,6 +1,8 @@
 <?php 
 namespace pmarco\EntitiesManager\Factories;
 
+use pmarco\EntitiesManager\Base\Entity;
+
 use pmarco\EntitiesManager\Base\EntityComponent;
 use pmarco\EntitiesManager\Base\EntityComponentModel;
 use pmarco\EntitiesManager\Base\EntityComponentView;
@@ -10,7 +12,7 @@ use pmarco\EntitiesManager\Base\EntityComponentProvider;
 
 class EntityComponentFactory
 {
-    public static function create(string $componentType, Entity $entity, EntityPathManager $managePath, EntityStrManipulator $manipulateStr): EntityComponent
+    public static function create(string $componentType, Entity $entity, EntityPathManager $managePath, EntityStrManipulator $manipulateStr)
     {
         
         switch ($componentType) {
