@@ -1,20 +1,16 @@
 <?php 
+
 namespace pmarco\EntitiesManager\Base;
 
-use pmarco\EntitiesManager\Helpers\EntityStrManipulator; 
 use pmarco\EntitiesManager\Helpers\EntityPathManager; 
-
+use pmarco\EntitiesManager\Helpers\EntityStrManipulator; 
 
 abstract class EntityComponent 
 {
-
     protected string $name;
     protected Entity $entity;
-
-
-    protected string $class;
-    protected string $dir;
-    protected string $template;
+    protected EntityPathManager $managePath;
+    protected EntityStrManipulator $manipulateStr;
     protected string $fullPath;
 
     public function __construct(Entity $entity, EntityPathManager $managePath, EntityStrManipulator $manipulateStr)
@@ -22,34 +18,24 @@ abstract class EntityComponent
         $this->entity = $entity;
         $this->managePath = $managePath;
         $this->manipulateStr = $manipulateStr;
-
     }
 
-    public function setEntityComponentProperties(string $component, Entity $entity) : void
+    protected function setEntityComponentProperties(string $component)
     {
-        $entityName = $this->manipulateStr->formatSingularAndLowercaseStr($component);
-        $class = $this->manipulateStr->formatSingularAndUppercaseStr($component);
-        $dir = $this->manipulateStr->formatPluralAndUppercaseStr($component);
-        $fullPath = $this->getEntityTreeDir->entityComponentDir;
+        $this->name = $this->manipulateStr->formatSingularAndUppercaseStr($component);
+        $this->fullPath = $this->managePath->getEntityComponentDir($this->entity->getName(), $component);
     }
 
-    public function generateComponentBAK($entityName, string $fullPath) : void
+    protected function generateComponent($layerType, $entityName)
     {
-        $this->call("make:$component", [
-            'name' => $fullPath
-        ]);
+        $fullCommandName = "{$this->fullPath}/{$entityName}{$this->name}";
+        $this->info("Generating layer with Artisan command: make:$layerType Name: $fullCommandName");
+        $this->call("make:$layerType", ['name' => $fullCommandName]);
     }
-
-    public function generateComponent($entityName, string $fullPath)
+    
+    public function generate(string $entityName, string $layerType)
     {
-        $this->echo("Hello");
+        $this->setEntityComponentProperties($layerType);
+        $this->generateComponent($layerType, $entityName);
     }
-
-    public function generate(string $entityName): void
-    {
-        $this->setEntityComponentProperties($this->name, $entityName);
-        $fullPath = $this->getFullPath($entityName, $this->name);
-        $this->generateComponent($entityName, $fullPath);
-    }
-
 }

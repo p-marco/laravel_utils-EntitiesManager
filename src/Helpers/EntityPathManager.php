@@ -14,9 +14,9 @@ class EntityPathManager
     protected $isWritable;
     protected $isReadable;
 
-    protected $entitiesRootDir;
-    protected $entityDir;
-    protected $entityComponentDir;
+    public $entitiesRootDir;
+    public $entityDir;
+    public $entityComponentDir;
 
     protected function checkPath(string $path) 
     {
@@ -40,14 +40,14 @@ class EntityPathManager
         File::makeDirectory($path, 0755, true);
     }
 
-    protected function getEntityTreeDir($entity, $component) 
+    public function getEntityTreeDir($entity, $layer = null) 
     {
-        $this->entitiesRootDir      = config('entities_manager.entities-root_path');
-        $this->entityDir            = "{$this->entitiesRootDir}/{$entity}";
-        $this->entityComponentDir   = "{$this->entityDir}/{$component}";
+        $this->entitiesRootDir = config('entities_manager.entities-root_path');
+        $this->entityDir = "{$this->entitiesRootDir}/{$entity}";
+        $this->entityComponentDir = $layer ? "{$this->entityDir}/{$layer}" : $this->entityDir;
     }
-
-    public function manageDirectory($entity, $component) 
+    
+    public function manageDirectory($entity, $component = null) 
     {
         $this->getEntityTreeDir($entity, $component);
         $this->managePath($this->entitiesRootDir);
@@ -58,6 +58,12 @@ class EntityPathManager
     public function generateFile($path, $content)
     {
         File::put($path, $content);
+    }
+
+    public function getEntityComponentDir()
+    {
+        //return $this->entityComponentDir;
+        return $this->entityComponentDir;
     }
 
 }

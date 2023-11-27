@@ -7,6 +7,8 @@ use pmarco\EntitiesManager\Helpers\EntityPathManager;
 use pmarco\EntitiesManager\Helpers\EntityStrManipulator; 
 
 use pmarco\EntitiesManager\Base\EntityComponent;
+
+
 use pmarco\EntitiesManager\Base\EntityComponentModel;
 use pmarco\EntitiesManager\Base\EntityComponentView;
 use pmarco\EntitiesManager\Base\EntityComponentController;

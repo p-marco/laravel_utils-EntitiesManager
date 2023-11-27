@@ -1,56 +1,26 @@
 <?php 
-
 namespace pmarco\EntitiesManager\Commands;
 
-
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Config;
-
-use pmarco\EntitiesManager\Base\Entity; 
-use pmarco\EntitiesManager\Base\EntityComponent; 
-
-use pmarco\EntitiesManager\Factories\EntityComponentFactory;
-
-use pmarco\EntitiesManager\Helpers\EntityPathManager; 
-use pmarco\EntitiesManager\Helpers\EntityStrManipulator; 
+use pmarco\EntitiesManager\Entities\Entity\Abstracts\Entity;
 
 class EntityGenerateCommand extends Command
 {
-
     protected $signature = 'entity:generate 
                             {entity : The name of the Entity you want to create} 
-                            {--component= : The type of component you want to create (Model, View, Controller, Repository etc.)}';
+                            {--layer= : The type of Layer you want to create (Model, View, Controller, etc.)}';
     
-
-    public function __construct(Entity $entity)
-    {
-        parent::__construct();
-        $this->entity = $entity;
-    }
+    protected $description = 'Generate an entity with specified layers.';
 
     public function handle()
     {
+
         $entityName = $this->argument('entity');
-        $types = $this->option('component');
+        $layers = $this->option('layer');
 
-        $entity = new Entity(); 
-        $managePath = new EntityPathManager(); 
-        $manipulateStr = new EntityStrManipulator(); 
+        Entity::generate($entityName)->layers($layers);
 
+        $this->info("Entity $entityName with layers created successfully.");
 
-        $validTypes = ['model', 'controller', 'view']; 
-
-        $typesToGenerate = $types ? explode(',', $types) : $validTypes;
-
-        foreach ($typesToGenerate as $type) {
-            if (in_array($type, $validTypes)) {
-                $component = EntityComponentFactory::create($type, $entity, $managePath, $manipulateStr);                
-                $component->generate($type);
-            } else {
-                $this->error("Invalid type: $type");
-            }
-        }
-
-        $this->info("Entity components generated for: $entityName");
     }
 }
