@@ -31,14 +31,14 @@ Post
 
 ```
     // Example: Generate a model for the "Post" entity
-    artisan entity:generate:model Post
+    artisan entity:generate Post --layer=model
 ```
 
 * Consistency Across Entities: By following a consistent naming and organization convention, this package helps to ensure that all entities in your application share a uniform structure. This consistency makes it easier to understand and maintain your codebase.
 
 * Improved Code Maintainability: With a well-structured codebase, developers can more effectively collaborate and maintain the application over time. This package promotes best practices for code organization.
 
-In summary, laravel_utils-EntitiesManager simplifies entity management in Laravel by providing a structured approach and tools to generate and organize entity-related components. It enhances code maintainability, encourages best practices, and saves developers valuable time when working with entities in their Laravel applications.
+In summary, `laravel_utils-EntitiesManager` simplifies entity management in Laravel by providing a structured approach and tools to generate and organize entity-related components. It enhances code maintainability, encourages best practices, and saves developers valuable time when working with entities in their Laravel applications.
 
 ## Installation
 
