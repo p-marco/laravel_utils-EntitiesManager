@@ -11,6 +11,10 @@ use pmarco\EntitiesManager\Entities\Layer\Views\LayerView;
 use pmarco\EntitiesManager\Entities\Layer\Factories\LayerFactory;
 use pmarco\EntitiesManager\Entities\Layer\Events\LayerEvent;
 use pmarco\EntitiesManager\Entities\Layer\Providers\LayerProvider;
+use pmarco\EntitiesManager\Entities\Layer\Repositories\LayerRepository;
+use pmarco\EntitiesManager\Entities\Layer\Observers\LayerObserver;
+use pmarco\EntitiesManager\Entities\Layer\Listeners\LayerListener;
+use pmarco\EntitiesManager\Entities\Layer\Requests\LayerRequest;
 
 
 use pmarco\EntitiesManager\Entities\Shared\Helpers\StrManipulator;
@@ -37,12 +41,20 @@ class LayersFactory
                 return LayerEvent::create($entity, $layerType);
             case 'provider':
                 return LayerProvider::create($entity, $layerType);
+            case 'repository':
+                return LayerRepository::create($entity, $layerType);
+            case 'observer':
+                return LayerObserver::create($entity, $layerType);
+            case 'listener':
+                return LayerListener::create($entity, $layerType);           
+            case 'request':
+                return LayerRequest::create($entity, $layerType);
         }
     }
 
     public static function getLayers()
     {
-        return ['model', 'view', 'controller', 'factory', 'event', 'provider'];
+        return ['model', 'view', 'controller', 'factory', 'event', 'provider', 'repository', 'observer', 'listener', 'request'];
     }
 
     

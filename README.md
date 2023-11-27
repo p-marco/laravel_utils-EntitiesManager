@@ -59,14 +59,12 @@ Add the package in `composer.json`:
 
 ```
 // Basic usage:
-artisan entity:generate {entity} {--type}
+artisan entity:generate {entity} {--layer}
 
 // Create a model or other types (either if the Entity is already present or not):
-artisan entity:generate Author --type=model
-artisan entity:generate Comment --type=view
-artisan entity:generate Post --type=controller
-
-// Create a full entity with all the items
-artisan entity:generate Post
+artisan entity:generate Author --layer=model
+artisan entity:generate Comment --layer=view
+artisan entity:generate Post --layer=controller
 
 ```
+The root folder is hardcoded as `App\Entities`. Future plans to make it configurable.
