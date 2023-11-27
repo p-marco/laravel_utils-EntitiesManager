@@ -55,8 +55,6 @@ Add the package in `composer.json`:
     }
 ```
 
-Token: `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`
-
 
 ## Usage
 
