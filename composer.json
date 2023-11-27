@@ -5,7 +5,7 @@
       "laravel",
       "composer"
   ],
-  "version" : "1.0.0",
+  "version" : "1.0.1",
   "homepage": "https://github.com/p-marco/laravel_utils-EntitiesManager",
   "license": "GPL-3",
   "authors": [
