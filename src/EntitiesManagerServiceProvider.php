@@ -23,6 +23,9 @@ class EntitiesManagerServiceProvider extends ServiceProvider
     public function boot()
     {
         define('PACKAGE_PATH', __DIR__);
+        $this->publishes([
+            __DIR__.'/config/entity_manager.php' => config_path('entity_manager.php'),
+        ]);
 
 
         if ($this->app->runningInConsole()) {

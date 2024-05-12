@@ -15,7 +15,8 @@ class Entity extends Facade
     {
         // Il primo argomento è ora il metodo da chiamare, es. 'generate' o 'delete'
         $methodName = array_shift($arguments);
-        $entityClass = 'App\\Entities\\' . $entityName;
+        $rootDir = config('entity_manager.root_path', 'App\\Entities\\');
+        $entityClass = $rootDir . $entityName;
 
 
 

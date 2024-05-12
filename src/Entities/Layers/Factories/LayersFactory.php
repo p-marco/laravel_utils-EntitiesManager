@@ -24,31 +24,35 @@ class LayersFactory
 {
     public static function create($layerType, Entity $entity)
     {
-        if (!in_array($layerType, self::getLayers())) {
-            throw new \InvalidArgumentException("Invalid type: $layerType");
-        }
+        // if (!in_array($layerType, self::getLayers())) {
+        //     throw new \InvalidArgumentException("Invalid type: $layerType");
+        // }
 
         switch ($layerType) {
-            case 'model':
+            case 'model' :
                 return LayerModel::create($entity, $layerType);
-            case 'view':
+            case 'view' :
                 return LayerView::create($entity, $layerType);
-            case 'controller':
+            case 'controller' :
                 return LayerController::create($entity, $layerType);
-            case 'factory':
+            case 'factory' :
                 return LayerFactory::create($entity, $layerType);
-            case 'event':
+            case 'event' :
                 return LayerEvent::create($entity, $layerType);
-            case 'provider':
+            case 'provider' :
                 return LayerProvider::create($entity, $layerType);
-            case 'repository':
+            case 'repository' :
                 return LayerRepository::create($entity, $layerType);
-            case 'observer':
+            case 'observer' :
                 return LayerObserver::create($entity, $layerType);
-            case 'listener':
+            case 'listener' :
                 return LayerListener::create($entity, $layerType);           
-            case 'request':
+            case 'request' :
                 return LayerRequest::create($entity, $layerType);
+            case 'default' :
+                return self::createDefaultLayers($entity);
+            default :
+                throw new \InvalidArgumentException("Invalid type: $layerType");
         }
     }
 
@@ -56,6 +60,14 @@ class LayersFactory
     {
         return ['model', 'view', 'controller', 'factory', 'event', 'provider', 'repository', 'observer', 'listener', 'request'];
     }
-
+    private static function createDefaultLayers(Entity $entity)
+    {
+        return [
+            LayerController::create($entity, 'controller'),
+            LayerModel::create($entity, 'model'),
+            // LayerView::create($entity, 'view'),
+            LayerRepository::create($entity, 'repository'),
+        ];
+    }
     
 }

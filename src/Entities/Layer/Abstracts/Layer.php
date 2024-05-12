@@ -51,7 +51,7 @@ abstract class Layer
 
     protected function determineNamespace()
     {
-        $rootDir = "App\\Entities\\";
+        $rootDir = config('entity_manager.root_path', 'App\\Entities\\');
         $entityNameFormatted = $this->strManipulator->formatSingularAndUppercaseStr($this->entity->getName());
         return "{$rootDir}{$entityNameFormatted}";
     }

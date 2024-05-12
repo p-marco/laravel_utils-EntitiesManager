@@ -16,7 +16,7 @@ class EntityGenerateCommand extends Command
     {
 
         $entityName = $this->argument('entity');
-        $layers = $this->option('layer');
+        $layers = $this->option('layer') ?: 'default';
 
         Entity::generate($entityName)->layers($layers);
 

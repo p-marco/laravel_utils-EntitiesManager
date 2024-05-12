@@ -69,3 +69,10 @@ artisan entity:generate Post --layer=controller
 
 ```
 The root folder is hardcoded as `App\Entities`. Future plans to make it configurable.
+
+## Changelog
+
+### v.1.1.0
+
+- Root folder for entities generation is coded into config file, that can be published (!BREAKING FEATURES)
+- Created default fallback when no --layer option is specified
